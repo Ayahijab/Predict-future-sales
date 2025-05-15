@@ -7,6 +7,7 @@ import seaborn as sns
 import joblib
 import numpy as np
 
+
 st.set_page_config(page_title="Bike sharing Dashboard", layout="wide")
 
 df = pd.read_csv("cleaned_df.csv")  
@@ -96,7 +97,7 @@ st.plotly_chart(fig2, use_container_width=True)
 
 # Temperature scatter plot with trendline
 st.markdown("### 🌡️ Temperature Effect on Rides")
-fig3 = px.scatter(df_filtered, x='temp', y='count', color='season', title="Temperature vs Ride Count", trendline='ols', template="plotly_dark")
+fig3 = px.scatter(df_filtered, x='temp', y='count', color='season', title="Temperature vs Ride Count", template="plotly_dark")
 fig3.update_layout(title_font_size=24, title_x=0.5, xaxis_title="Temperature", yaxis_title="Total Rides")
 st.plotly_chart(fig3, use_container_width=True)
 
@@ -104,12 +105,8 @@ st.plotly_chart(fig3, use_container_width=True)
 st.markdown("### 🌅 Ride Distribution by Part of Day")
 part_day_df = df_filtered.groupby('part_of_day')['count'].sum().reset_index().sort_values(by='count', ascending=False)
 
-fig_part_day = px.bar(part_day_df,x='part_of_day',y='count',color='part_of_day',title="Total Rides by Part of Day",
-    template="plotly_dark"
-)
-fig_part_day.update_layout(xaxis_title="Part of Day",yaxis_title="Total Rides",title_font_size=24,
-    title_x=0.5
-)
+fig_part_day = px.bar(part_day_df,x='part_of_day',y='count',color='part_of_day',title="Total Rides by Part of Day",template="plotly_dark")
+fig_part_day.update_layout(xaxis_title="Part of Day",yaxis_title="Total Rides",title_font_size=24,title_x=0.5)
 st.plotly_chart(fig_part_day, use_container_width=True)
 
 st.markdown("### 🧍‍♂️ User Type Distribution")
@@ -119,7 +116,7 @@ fig6 = px.pie(user_counts, values='Count', names='User Type', title='User Type P
 st.plotly_chart(fig6, use_container_width=True)
 
 st.markdown("### 💧 Humidity vs Ride Count")
-fig7 = px.scatter(df_filtered, x='humidity', y='count', color='season', title="Humidity vs Ride Count", trendline='ols', labels={"hum": "Humidity", "cnt": "Ride Count"}, template="plotly_dark")
+fig7 = px.scatter(df_filtered, x='humidity', y='count', color='season', title="Humidity vs Ride Count", labels={"hum": "Humidity", "cnt": "Ride Count"}, template="plotly_dark")
 st.plotly_chart(fig7, use_container_width=True)
 
 st.markdown("### 📦 Ride Count Distribution by Month")
