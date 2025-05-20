@@ -10,7 +10,7 @@ import numpy as np
 
 st.set_page_config(page_title="Bike sharing Dashboard", layout="wide")
 
-df = pd.read_csv("C:/Users/LENOVO/Predict-future-sales/cleaned_df.csv")
+df = pd.read_csv("cleaned_df.csv")
 
 
 # Data preprocessing
@@ -125,7 +125,7 @@ fig9 = px.box(df_filtered, x='month', y='count', color='month', title="Distribut
 st.plotly_chart(fig9, use_container_width=True)
 
 
-model = joblib.load("C:/Users/LENOVO/Predict-future-sales/bike_count_prediction_rf.joblib")
+model = joblib.load("xgb_best_model.joblib")
 
 
 # Input widgets for features
